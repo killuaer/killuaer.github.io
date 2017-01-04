@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>Tag: nodeJs | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/nodeJs/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
@@ -147,43 +147,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-NodeJs微信公众平台开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/01/04/NodeJs微信公众平台开发/" class="archive-article-date">
+  	<time datetime="2017-01-04T13:46:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-04</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/04/NodeJs微信公众平台开发/">NodeJs微信公众平台开发</a>
+      <a class="archive-article-title" href="/2017/01/04/NodeJs微信公众平台开发/">NodeJs微信公众平台开发</a>
     </h1>
   
 
-        
-        <a href="/2017/01/04/NodeJs微信公众平台开发/" class="archive-article-date">
-  	<time datetime="2017-01-04T13:46:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p>微信服务器就相当于一个转发服务器，终端（手机、Pad等）发起请求至微信服务器，微信服务器将请求转发给自定义服务。服务处理完毕，然后转发给微信服务器，微信服务器再将具体响应回复到终端；通信协议为：HTTP；数据格式为：XML。<br>具体流程如下图：<br><img src="http://www.hubwiz.com/course/569dc7fdacf9a45a69b051cd/service.png" alt="微信请求流程"></p>
-<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><ol>
-<li>拥有微信公众号，并开启开发者模式</li>
-<li>搭建nodejs环境，安装express、node-xml、jssha和ejs等模块</li>
-<li>要求开放服务的80端口，并且公网能够访问，不然无法进行微信服务器的Token验证</li>
-</ol>
-<h1 id="app-js-入口文件"><a href="#app-js-入口文件" class="headerlink" title="app.js 入口文件"></a>app.js 入口文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var express = require(&quot;express&quot;);</div><div class="line">var path=require(&apos;path&apos;);</div><div class="line">var app = express();</div><div class="line"></div><div class="line">var server = require(&apos;http&apos;).Server(app);</div><div class="line">require(&apos;./index&apos;)(app);                //路由配置文件</div><div class="line">server.listen(80,function()&#123;</div><div class="line">  console.log(&apos;App start,port 80.&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h1 id="index-js-路由文件"><a href="#index-js-路由文件" class="headerlink" title="index.js 路由文件"></a>index.js 路由文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line">var xml=require(&apos;node-xml&apos;);</div><div class="line">var jsSHA = require(&apos;jssha&apos;);</div><div class="line"></div><div class="line">module.exports = function(app)&#123;</div><div class="line">  //普通get请求</div><div class="line">  app.get(&apos;/&apos;,function(req,res)&#123;</div><div class="line">    res.render(&apos;test&apos;,&#123;issuccess:&quot;success&quot;&#125;);</div><div class="line">  &#125;); </div><div class="line">  //接收微信服务器的请求验证token</div><div class="line">  app.get(&apos;/interface&apos;,function(req,res)&#123;</div><div class="line">  	  var token=&quot;weixin&quot;;</div><div class="line">      var signature = req.query.signature;</div><div class="line">      var timestamp = req.query.timestamp;</div><div class="line">      var echostr   = req.query.echostr; </div><div class="line">      var nonce     = req.query.nonce;</div><div class="line">      var oriArray = new Array();</div><div class="line">      oriArray[0] = nonce;</div><div class="line">      oriArray[1] = timestamp;</div><div class="line">      oriArray[2] = token;</div><div class="line">      oriArray.sort();</div><div class="line">      var original = oriArray.join(&apos;&apos;);</div><div class="line">      var shaObj = new jsSHA(original, &apos;TEXT&apos;);</div><div class="line">      var scyptoString=shaObj.getHash(&apos;SHA-1&apos;, &apos;HEX&apos;); </div><div class="line">      if(signature == scyptoString)&#123;</div><div class="line">       //验证成功,要返回这个随机串微信服务器才通过</div><div class="line">         return res.send(echostr);</div><div class="line">       &#125; else &#123;</div><div class="line">        //验证失败</div><div class="line">       &#125;</div><div class="line">  &#125;); </div><div class="line"></div><div class="line">  //获取微信客户端发送的消息</div><div class="line">  app.post(&apos;/interface&apos;,function(req,res)&#123;</div><div class="line">	  var post_data=&quot;&quot;;</div><div class="line">      req.on(&quot;data&quot;,function(data)&#123;post_data=data;&#125;);</div><div class="line">      req.on(&quot;end&quot;,function()&#123;</div><div class="line">	      var xmlStr=post_data.toString(&apos;utf-8&apos;,0,post_data.length);</div><div class="line">	      //解析消息代码</div><div class="line">	      // 定义解析存储变量</div><div class="line">	      var ToUserName=&quot;&quot;;</div><div class="line">	      var FromUserName=&quot;&quot;;</div><div class="line">	      var CreateTime=&quot;&quot;;</div><div class="line">	      var MsgType=&quot;&quot;;</div><div class="line">	      var Content=&quot;&quot;;</div><div class="line">	      var tempName=&quot;&quot;;</div><div class="line">	      //开始解析消息</div><div class="line">	      var parse=new xml.SaxParser(function(cb)&#123;</div><div class="line">	        cb.onStartElementNS(function(elem,attra,prefix,uri,namespaces)&#123;</div><div class="line">	             tempName=elem;</div><div class="line">	        &#125;);</div><div class="line">	        cb.onCharacters(function(chars)&#123;</div><div class="line">	            chars=chars.replace(/(^\s*)|(\s*$)/g, &quot;&quot;);</div><div class="line">	            if(tempName==&quot;CreateTime&quot;)&#123;</div><div class="line">	                CreateTime=chars;</div><div class="line">	            &#125;</div><div class="line">	        &#125;);</div><div class="line">	        cb.onCdata(function(cdata)&#123;</div><div class="line">	                if(tempName==&quot;ToUserName&quot;)&#123;</div><div class="line">	                    ToUserName=cdata;</div><div class="line">	                &#125;else if(tempName==&quot;FromUserName&quot;)&#123;</div><div class="line">	                    FromUserName=cdata;</div><div class="line">	                &#125;else if(tempName==&quot;MsgType&quot;)&#123;</div><div class="line">	                    MsgType=cdata;</div><div class="line">	                &#125;else if(tempName==&quot;Content&quot;)&#123;</div><div class="line">	                    Content=cdata;</div><div class="line">	                &#125;</div><div class="line">	                console.log(tempName+&quot;:&quot;+cdata);</div><div class="line">	            &#125;);</div><div class="line">		       cb.onEndElementNS(function(elem,prefix,uri)&#123;</div><div class="line">		             tempName=&quot;&quot;;</div><div class="line">		       &#125;);</div><div class="line">		       cb.onEndDocument(function()&#123;</div><div class="line">		          //按收到的消息格式回复消息</div><div class="line">		           CreateTime=parseInt(new Date().getTime() / 1000);</div><div class="line">				    var msg=&quot;&quot;;</div><div class="line">				    if(MsgType==&quot;text&quot;)&#123;</div><div class="line">				       msg=&quot;谢谢关注,你说的是:&quot;+Content;</div><div class="line">				       //组织返回的数据包</div><div class="line">				       var sendMessage=&apos;&lt;xml&gt; &lt;ToUserName&gt;&lt;![CDATA[&apos;+FromUserName+&apos;]]&gt;&lt;/ToUserName&gt; &lt;FromUserName&gt;&lt;![CDATA[&apos;+ToUserName+&apos;]]&gt;&lt;/FromUserName&gt; &lt;CreateTime&gt;&apos;+CreateTime+&apos;&lt;/CreateTime&gt; &lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt; &lt;Content&gt;&lt;![CDATA[&apos;+msg+&apos;]]&gt;&lt;/Content&gt; &lt;/xml&gt;&apos;; </div><div class="line">				       res.send(sendMessage);</div><div class="line">				    &#125;</div><div class="line">				&#125;);</div><div class="line">	   		 &#125;);</div><div class="line">	    	parse.parseString(xmlStr);</div><div class="line"> 		&#125;);</div><div class="line">	&#125;);</div><div class="line">&#125;；</div></pre></td></tr></table></figure>
-<p>以上代码经过本人测试，能正确运行<br>目前只能处理文字信息，更多处理方式请访问<a href="http://mp.weixin.qq.com/wiki/1/6239b44c206cab9145b1d52c67e6c551.html" target="_blank" rel="external">微信开发者文档</a><br><a href="http://www.hubwiz.com/course/569dc7fdacf9a45a69b051cd/" target="_blank" rel="external">nodeJs资料来源</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list">
@@ -195,231 +186,19 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/04/NodeJs微信公众平台开发/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-
-
-
-
-
-
   
-    <article id="post-探索CSS3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/03/探索CSS3/">探索CSS3</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/03/探索CSS3/" class="archive-article-date">
-  	<time datetime="2017-01-03T11:44:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CSS3浏览器兼容"><a href="#CSS3浏览器兼容" class="headerlink" title="CSS3浏览器兼容"></a>CSS3浏览器兼容</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">前缀</th>
-<th style="text-align:center">浏览器</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>-webkit</code></td>
-<td style="text-align:center">chrome和safari</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>-moz</code></td>
-<td style="text-align:center">firefox</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>-ms</code></td>
-<td style="text-align:center">IE9+</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>-o</code></td>
-<td style="text-align:center">opera</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h1 id="CSS3边框"><a href="#CSS3边框" class="headerlink" title="CSS3边框"></a>CSS3边框</h1><h2 id="边框圆角效果"><a href="#边框圆角效果" class="headerlink" title="边框圆角效果"></a>边框圆角效果</h2><p>语法：<code>border-radius:1-4 length|% / 1-4 length|%</code><br>所有合法的CSS度量值都可以使用：em、px、百分比等，设置为负值没有效果</p>
-<p>eg:<code>border-top-left-radius:50px</code><br>它的意思是左上角的水平半径和垂直半径都设置为50px,也可以理解为<code>border-top-left-radius:50px/50px</code>的缩写，而且两组值可以不一致，效果如下图所示：<br><img src="http://img2.ph.126.net/fkPMe8zKaZOjpfHu1lWzFQ==/4925812092536863172.png" alt="左上圆角"><br><a href="http://blog.sina.com.cn/s/blog_61671b520101gelr.html" target="_blank" rel="external">边框圆角详解来源</a></p>
-<h2 id="边框阴影"><a href="#边框阴影" class="headerlink" title="边框阴影"></a>边框阴影</h2><p>语法：<code>box-shadow: h-shadow v-shadow blur spread color inset</code></p>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>h-shadow</td>
-<td>必需，水平阴影的位置，允许负值 </td>
-</tr>
-<tr>
-<td>v-shadow</td>
-<td>必需，垂直阴影的位置，允许负值</td>
-</tr>
-<tr>
-<td>blur</td>
-<td>可选，模糊距离 (+)</td>
-</tr>
-<tr>
-<td>spread</td>
-<td>可选，阴影尺寸 (+-)</td>
-</tr>
-<tr>
-<td>color</td>
-<td>可选，阴影颜色</td>
-</tr>
-<tr>
-<td>inset</td>
-<td>可选，将外部阴影(outset)改为内部阴影</td>
-</tr>
-</tbody>
-</table>
-<ol>
-<li>对象阴影同box模型的层次一样，外阴影会在对象背景之下，内阴影会在边框之下背景之上。我们知道，默认情形背景图片是在背景颜色之上的。所以整个层级是：边框&gt;内阴影&gt;背景图片&gt;背景颜色&gt;外阴影。</li>
-<li>元素使用多个阴影，只需要阴影之间用逗号分隔，如果不设置模糊半径为0，则其它也会有阴影的。</li>
-<li>多阴影顺序，当给同一个元素使用多个阴影属性时，最先写的阴影将显示在最顶层。</li>
-<li>只设置阴影尺寸和颜色，会产生类border边框效果，同时不会影响页面的布局</li>
-</ol>
-<p><a href="http://blog.csdn.net/freshlover/article/details/7610269" target="_blank" rel="external">边框阴影详解来源</a></p>
-<h2 id="边框图片"><a href="#边框图片" class="headerlink" title="边框图片"></a>边框图片</h2><p>语法：<code>border-image ： none | &lt;image&gt; [ &lt;number&gt; | &lt;percentage&gt;]{1,4} [ / &lt;border-width&gt;{1,4} ]? [ stretch: | repeat | round ]{0,2}</code><br>分解：<br>border-image-source:url(image url);　　image url可以是相对地址也可以是绝对地址<br><strong>border-image-slice: [ <number> | <percentage>]{1,4}&amp;&amp; fill?　　　图片切割宽度</percentage></number></strong><br>border-image-width: [ <length> | <percentage> | <number> | auto ]{1,4}<br>border-image-repeat: [ stretch | repeat | round ]{1,2}　　　图片延伸方式</number></percentage></length></p>
-<p>round:可以理解为圆满的铺满。为了实现圆满所以会压缩（或拉伸）<br>stretch:很好理解就是拉伸，有多长拉多长。有多远“滚”多远<br>repeat:不改变大小的重复<br>图片的切割是以切成九宫格的形式，由外向内的方向，图片的四个角是固定点，下图有个直观的效果：<br><img src="http://www.w3cplus.com/sites/default/files/border-image-slice.jpg" alt="图片切割"><br><a href="http://www.w3cplus.com/content/css3-border-image" target="_blank" rel="external">边框图片详解来源</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color5">CSS3</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/03/探索CSS3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-伊始" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/01/伊始/">伊始</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/01/伊始/" class="archive-article-date">
-  	<time datetime="2017-01-01T14:19:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>当我年轻的时候，我的想象力从没有受到过限制，我梦想改变这个世界。<br>当我成熟以后，我发现我不能改变这个世界，我将目光缩短了些，决定只改变我的国家。<br>当我进入暮年后，我发现我不能改变我的国家，我的最后愿望仅仅是改变一下我的家庭。但是，这也不可能。<br>当我躺在床上，行将就木时，我突然意识到： 如果一开始我仅仅去改变我自己，然后作为一个榜样，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情。然后谁知道呢？我甚至可能改变这个世界。</p>
-<div align="right">—–无名氏墓碑</div>
-
-</blockquote>
-<p><strong>借鉴前人的智慧，能让我们看得更远。</strong><br>工作的这些年，经历了懵懂、迷茫、惧怕、压抑、激昂和牵挂，人总不能就这样浑浑噩噩过一辈子，这世界依旧缤纷多彩，我想找到自己存在的价值，改变世界这梦想太遥远，我想的是构建属于我自己的精神世界，这就要求我进行自我约束了，培养一个好的习惯，如滚雪球般把我推向良性的循环。<br>实践证明，劳逸结合很重要，苦行僧式的生活不适合我，或者说我还没能达到六根清净的境界，再者，兴趣真的是很重要，没有兴趣就提不起精神，没有精神也就不过是一棵随风飘荡的芦苇，我最大的兴趣莫过于玩，玩遍这世间的游戏，但首先要具备成为玩家的实力。</p>
-<p>未来期望：<br>1.永远保持着开心的笑<br>2.早起早睡（6.30 | 11.30）<br>3.多和别人沟通，勇往直前<br>4.饱览群书，知识就是力量<br>5.一起愉快地玩耍吧</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/01/伊始/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
 
 
           </div>
@@ -441,10 +220,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
