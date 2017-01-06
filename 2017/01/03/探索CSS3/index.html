@@ -72,7 +72,8 @@ CSS3边框边框圆角效果语法：border-radius:1-4 length|% / 1-4 length|%�
 eg:border-top-left-r">
 <meta property="og:image" content="http://img2.ph.126.net/fkPMe8zKaZOjpfHu1lWzFQ==/4925812092536863172.png">
 <meta property="og:image" content="http://www.w3cplus.com/sites/default/files/border-image-slice.jpg">
-<meta property="og:updated_time" content="2017-01-03T13:55:12.977Z">
+<meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2014/07/7B0CC41A-86DC-4E1B-8A69-A410E6764B91.jpg">
+<meta property="og:updated_time" content="2017-01-06T14:40:22.075Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="探索CSS3">
 <meta name="twitter:description" content="CSS3浏览器兼容
@@ -329,6 +330,17 @@ eg:border-top-left-r">
 <p><a href="http://blog.csdn.net/freshlover/article/details/7610269" target="_blank" rel="external">边框阴影详解来源</a></p>
 <h2 id="边框图片"><a href="#边框图片" class="headerlink" title="边框图片"></a>边框图片</h2><p>语法：<code>border-image ： none | &lt;image&gt; [ &lt;number&gt; | &lt;percentage&gt;]{1,4} [ / &lt;border-width&gt;{1,4} ]? [ stretch: | repeat | round ]{0,2}</code><br>分解：<br>border-image-source:url(image url);　　image url可以是相对地址也可以是绝对地址<br><strong>border-image-slice: [ <number> | <percentage>]{1,4}&amp;&amp; fill?　　　图片切割宽度</percentage></number></strong><br>border-image-width: [ <length> | <percentage> | <number> | auto ]{1,4}<br>border-image-repeat: [ stretch | repeat | round ]{1,2}　　　图片延伸方式</number></percentage></length></p>
 <p>round:可以理解为圆满的铺满。为了实现圆满所以会压缩（或拉伸）<br>stretch:很好理解就是拉伸，有多长拉多长。有多远“滚”多远<br>repeat:不改变大小的重复<br>图片的切割是以切成九宫格的形式，由外向内的方向，图片的四个角是固定点，下图有个直观的效果：<br><img src="http://www.w3cplus.com/sites/default/files/border-image-slice.jpg" alt="图片切割"><br><a href="http://www.w3cplus.com/content/css3-border-image" target="_blank" rel="external">边框图片详解来源</a></p>
+<h1 id="CSS3颜色"><a href="#CSS3颜色" class="headerlink" title="CSS3颜色"></a>CSS3颜色</h1><h2 id="颜色透明度"><a href="#颜色透明度" class="headerlink" title="颜色透明度"></a>颜色透明度</h2><p>语法：<code>color:rgba(R,G,B,A)</code><br>以上R、G、B三个参数，正整数值的取值范围为0 ~ 255.百分数值的取值范围为：0.0% ~ 100.0%。超出范围的数值将被截至最接近的取值极限，并非所有浏览器都支持使用百分数值。A为透明度，取值在0~1之间，不可为负值。</p>
+<h2 id="颜色渐变"><a href="#颜色渐变" class="headerlink" title="颜色渐变"></a>颜色渐变</h2><ul>
+<li><p>线性渐变：向下/向上/向左/向右/对角方向<br>语法：<code>background: linear-gradient((direction|angle), color-stop1, color-stop2, ...);</code><br>方向默认从上到下，第一个参数可以不填，取值可以为预设的(to bottom、to top、to right、to left 等等)或者是角度值90deg<br><img src="http://www.runoob.com/wp-content/uploads/2014/07/7B0CC41A-86DC-4E1B-8A69-A410E6764B91.jpg" alt="角度渐变"><br>颜色渐变可以设置多种颜色，而颜色可以用rgba()来设置透明效果。<br><code>background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); /* 标准的语法 */</code><br>同时还提供了一个重复线性渐变效果的repeating-linear-gradient()函数<br><code>background: repeating-linear-gradient(red, yellow 10%, green 20%);</code></p>
+</li>
+<li><p>径向渐变：由它们的中心定义<br>语法：<code>background: radial-gradient(center, shape size, start-color, ..., last-color);</code>;<br>shape参数的值可以为circle 或 ellipse(默认)。<br>它提供了repeating-radial-gradient()函数用于重复径向渐变<br><code>background: repeating-radial-gradient(red, yellow 10%, green 15%);</code><br>还提供了颜色结点不均匀分布的方式<br><code>background: radial-gradient(red 5%, green 15%, blue 60%); /* 标准的语法 */</code><br><a href="http://www.runoob.com/css3/css3-gradients.html" target="_blank" rel="external">CSS3颜色渐变详解来源</a></p>
+</li>
+</ul>
+<h1 id="CSS3文字与字体"><a href="#CSS3文字与字体" class="headerlink" title="CSS3文字与字体"></a>CSS3文字与字体</h1><h2 id="CSS3文字溢出"><a href="#CSS3文字溢出" class="headerlink" title="CSS3文字溢出"></a>CSS3文字溢出</h2><p>语法：<code>text-overflow:clip | ellipsis</code><br>它是用来说明文字溢出时用什么方式显示，剪切文本或者用省略号效果<br>如果采用省略号效果，还须定义强制文本在一行内显示 <code>white-space:nowrap</code> 及溢出内容为隐藏 <code>overflow:hidden</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">text-overflow:ellipsis;</div><div class="line">overflow:hidden;</div><div class="line">white-space:nowrap;</div></pre></td></tr></table></figure></p>
+<p><code>word-wrap:normal|break-word</code><br>当值为break-word时，表示允许对长的不可分割的单词进行分割并换行到下一行。</p>
+<h2 id="CSS3字体"><a href="#CSS3字体" class="headerlink" title="CSS3字体"></a>CSS3字体</h2><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@font-face&#123;</div><div class="line">	font-family:字体名称;</div><div class="line">	src:url(...)字体文件在服务器上的相对或绝对路径</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>@font-face能够加载服务器端的字体文件，让浏览器端可以显示用户电脑没有安装的字体.<br>URL请使用小写字母的字体，大写字母在IE中会产生意外的结果.<br>设置之后可以像使用普通字体一样在(font-*)中设置字体样式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">p&#123;</div><div class="line">	font-size:12px;</div><div class="line">	font-family:&quot;my font&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
 
@@ -563,7 +575,11 @@ eg:border-top-left-r">
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">随笔</a>
+                <a href="javascript:void(0)" class="color2">nodeJs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,7 +587,7 @@ eg:border-top-left-r">
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color2">nodeJs</a>
+                <a href="javascript:void(0)" class="color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
