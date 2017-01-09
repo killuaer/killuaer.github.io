@@ -73,7 +73,9 @@ eg:border-top-left-r">
 <meta property="og:image" content="http://img2.ph.126.net/fkPMe8zKaZOjpfHu1lWzFQ==/4925812092536863172.png">
 <meta property="og:image" content="http://www.w3cplus.com/sites/default/files/border-image-slice.jpg">
 <meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2014/07/7B0CC41A-86DC-4E1B-8A69-A410E6764B91.jpg">
-<meta property="og:updated_time" content="2017-01-06T14:40:22.075Z">
+<meta property="og:image" content="http://img.mukewang.com/531003de0001166903660166.jpg">
+<meta property="og:image" content="http://img.mukewang.com/5310065d0001c95103660166.jpg">
+<meta property="og:updated_time" content="2017-01-09T14:27:39.224Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="探索CSS3">
 <meta name="twitter:description" content="CSS3浏览器兼容
@@ -341,6 +343,17 @@ eg:border-top-left-r">
 <p><code>word-wrap:normal|break-word</code><br>当值为break-word时，表示允许对长的不可分割的单词进行分割并换行到下一行。</p>
 <h2 id="CSS3字体"><a href="#CSS3字体" class="headerlink" title="CSS3字体"></a>CSS3字体</h2><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@font-face&#123;</div><div class="line">	font-family:字体名称;</div><div class="line">	src:url(...)字体文件在服务器上的相对或绝对路径</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>@font-face能够加载服务器端的字体文件，让浏览器端可以显示用户电脑没有安装的字体.<br>URL请使用小写字母的字体，大写字母在IE中会产生意外的结果.<br>设置之后可以像使用普通字体一样在(font-*)中设置字体样式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">p&#123;</div><div class="line">	font-size:12px;</div><div class="line">	font-family:&quot;my font&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>##CSS3文字阴影<br>语法:<code>text-shadow: h-shadow v-shadow blur color;</code><br>它分别表示水平偏移、垂直偏移、模糊程度和阴影颜色</p>
+<h1 id="CSS3背景"><a href="#CSS3背景" class="headerlink" title="CSS3背景"></a>CSS3背景</h1><h2 id="背景图片起始位置-background-origin"><a href="#背景图片起始位置-background-origin" class="headerlink" title="背景图片起始位置 background-origin"></a>背景图片起始位置 background-origin</h2><p>语法：<code>background-origin : border-box | padding-box | content-box</code><br>参数分别表示背景图片是从边框，还是内边距，或者是内容区域开始显示<br>需要注意的是，如果背景不是no-repeat，这个属性无效，它会从边框开始显示<br><img src="http://img.mukewang.com/531003de0001166903660166.jpg" alt="图片位置"></p>
+<h2 id="背景图片裁剪-background-clip"><a href="#背景图片裁剪-background-clip" class="headerlink" title="背景图片裁剪 background-clip"></a>背景图片裁剪 background-clip</h2><p>语法：<code>background-origin : border-box | padding-box | content-box | no-clip</code><br>参数参照上面的意思，默认值是border-box,效果如下：<br><img src="http://img.mukewang.com/5310065d0001c95103660166.jpg" alt="图片裁剪"></p>
+<h2 id="背景图片大小-background-size"><a href="#背景图片大小-background-size" class="headerlink" title="背景图片大小 background-size"></a>背景图片大小 background-size</h2><p>语法：<code>background-size : auto | &lt;长度值&gt; | &lt;百分比&gt; | cover | contain</code><br>auto: 默认值，不改变背景图片的原始大小<br>&lt;长度值&gt;：成对出现，设置为给定的值，否则对图片按比例缩放<br>&lt;百分比&gt;：同上，只是宽高会乘上百分比<br>cover：覆盖，背景图片等比缩放以填满整个容器<br>contain：容纳，背景图片等比缩放至某一边贴紧容器边缘为止（有可能没铺满容器）</p>
+<h2 id="CSS3多重背景-background"><a href="#CSS3多重背景-background" class="headerlink" title="CSS3多重背景 background"></a>CSS3多重背景 background</h2><p>语法：<code>background ： [background-color] | [background-image] | [background-position][/background-size] | [background-repeat] | [background-attachment] | [background-clip] | [background-origin],...</code><br>可分解为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">background-image:url1,url2,...,urlN;</div><div class="line">background-repeat : repeat1,repeat2,...,repeatN;</div><div class="line">backround-position : position1,position2,...,positionN;</div><div class="line">background-size : size1,size2,...,sizeN;</div><div class="line">background-attachment : attachment1,attachment2,...,attachmentN;</div><div class="line">background-clip : clip1,clip2,...,clipN;</div><div class="line">background-origin : origin1,origin2,...,originN;</div><div class="line">background-color : color;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>用逗号隔开每组background的缩写值；</li>
+<li>如果有size值，需要紧跟position并且用”/“隔开；</li>
+<li>如果有多个背景图片，而其他属性只有一个，表明所有背景图片应用该属性值</li>
+<li>background-color只能设置一个</li>
+</ol>
 
       
 
@@ -583,11 +596,11 @@ eg:border-top-left-r">
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color5">CSS3</a>
+                <a href="javascript:void(0)" class="color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="color3">随笔</a>
+                <a href="javascript:void(0)" class="color5">CSS3</a>
               </li>
             
             <div class="clearfix"></div>
